@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
   margin: 0;
+  background-color: #f8f9fa;
 }
 
 #layout {
@@ -14,6 +15,7 @@ body {
   padding: 12px;
   box-sizing: border-box;
   overflow-y: auto;
+  background-color: #fff;
 }
 
 #main {
@@ -26,27 +28,77 @@ body {
     padding-left: 15px;
 }
 
+
 .preview {
-  padding: 8px;
-  color: #999;
+  padding: 10px;
+  color: #666;
   cursor: pointer;
-  white-space: nowrap;  /* Remove text wrap to only show a preview of each question, not the entire text. */
-  overflow: hidden;            
-  text-overflow: ellipsis; /* Replace overflow text with an ellipsis (...) */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  transition: background-color 0.2s;
+}
+
+
+.preview:hover {
+  background-color: #f1f3f5;
+  color: #333;
+}
+
+.preview.active {
+  background-color: #e2e8f0;
+  color: #0f172a;
+  font-weight: bold;
+  border-left: 4px solid #3b82f6; 
 }
 
 .card {
-  margin-bottom: 12px;
+  margin-bottom: 24px;
+  padding: 24px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+  transition: transform 0.2s, box-shadow 0.2s;
 }
+
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.card-buttons {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
 
 .question {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 12px 0;
+  transition: color 0.2s;
 }
 
+
+.question:hover {
+  color: #3b82f6; 
+}
+
+
 .answer {
-  color: #8bc98b;
-  font-weight: bold;
+  color: #166534; 
+  font-weight: normal;
+  font-size: 18px;
+  padding-top: 16px;
+  border-top: 2px dashed #e2e8f0;
+  margin-top: 16px;
 }
 
 .hidden {
@@ -54,36 +106,91 @@ body {
 }
 
 #error-message {
-  background: #fde8e8;
-  color: #b00020;
-  padding: 10px;
+  background: #fef2f2;
+  color: #991b1b;
+  padding: 12px;
   border-radius: 6px;
+  border: 1px solid #fecaca;
+  margin-bottom: 16px;
+}
+
+#nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    font-weight: bold;
+    color: #475569;
 }
 
 button {
   font-size: 14px;
-  padding: 6px 12px;
+  padding: 8px 16px;
   margin-right: 6px;
   cursor: pointer;
   outline: none;
+  background-color: #f8f9fa;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+button:hover {
+  background-color: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    color: #334155;
+    margin-bottom: 6px;
+    font-size: 14px;
 }
 
 input {
   display: block;
   font-size: 16px;
-  padding: 8px;
-  margin-bottom: 8px;
+  padding: 10px;
+  margin-bottom: 16px;
   width: 100%;
   box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 textarea {
   width: 300px;
   height: 60px;
+  margin-bottom: 12px;
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+
+dialog {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    padding: 24px;
 }
 
 dialog .close-btn {
   position: absolute;
-  right: 10px;
-  color: #b00020;
+  top: 12px;
+  right: 12px;
+  color: #991b1b;
+  background: none;
+  border: none;
+  font-size: 20px;
+  padding: 4px 8px;
+}
+dialog .close-btn:hover {
+    background-color: #fef2f2;
 }

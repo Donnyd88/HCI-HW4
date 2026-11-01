@@ -27,7 +27,17 @@ questions = [{
                 "id": 2,
                 "q": "What is the main goal of the ideation phase of iterative design?",
                 "a": "Generating as many possible design solutions as possible"
-                }
+                },
+             {
+                 "id": 3,
+                 "q": "What is the ADA in the context of Human-Computer Interaction?",
+                 "a": "The Americans with Disabilities Act (ADA) is a civil rights law prohibiting discrimation in disabilty. It requires software be accessible."
+                 },
+             {
+                 "id":4,
+                "q": "What are the POUR principles?",
+                "a": "Principles of the WCAG accessiblility guidlines. Interfaces must be Perceivable, Operable, Understandble, and Robust."
+                 }
             ]
 
 class QuestionRequest(BaseModel):

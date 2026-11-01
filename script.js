@@ -17,6 +17,9 @@ const editQuestion = document.querySelector("#edit-question");
 const editAnswer = document.querySelector("#edit-answer");
 // TODO: grab references to any necessary elements you added to index.html (search, counter, prev/next buttons)
 
+const previous_Button = document.querySelector("#prev-button");
+const next_Button = document.querySelector("#next-button");
+const counter = document.querySelector("#counter");
 
 // ---------- Errors ----------
 
@@ -79,6 +82,7 @@ function showPage() {
   if (currentIndex < 0) currentIndex = 0;
   renderPreviews();
   showCard();
+  update_Counter();
 }
 
 // Sidebar: one preview per question. Clicking a preview shows that card.
@@ -148,6 +152,26 @@ function showCard() {
 
 // TODO: Update the progress text ("Card 3 of 3") in the counter whenever the card changes.
 
+function update_Counter() {
+  if (questions.length === 0) {
+    counter.textContent = "Card 0 of 0";
+  } else {
+    counter.textContent = `Card ${currentIndex + 1} of ${questions.length}`;
+
+  }
+}
+
+previous_Button.addEventListener("click", () => {
+  if (0 === questions.length) return;
+  currentIndex = (currentIndex - 1 + questions.length) % questions.length;
+  showPage();
+})
+
+next_Button.addEventListener("click", () => {
+  if (0 == questions.length) return;
+  currentIndex = (currentIndex + 1) % questions.length;
+  showPage();
+})
 
 // ---------- Actions ----------
 
@@ -177,6 +201,14 @@ document.querySelector("#update-button").addEventListener("click", async functio
 });
 
 document.querySelector("#add-button").addEventListener("click", async function () {
+  const question_Text = newQuestion.value.trim();
+  const answer_text = newAnswer.value.trim();
+
+  if (question_Text === "" || answer_text === "") {
+    showError("The question and answer fields must both be filled in.");
+    return;
+  }
+
   await apiSend("POST", "/add", {
     question: newQuestion.value,
     answer: newAnswer.value
